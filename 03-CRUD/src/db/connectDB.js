@@ -3,7 +3,15 @@ import mongoose from "mongoose";
 const connectDB = async () => {
   try {
     await mongoose.connect(
-      `mongodb+srv://tododbuser:${process.env.DB_PASSWORD}@todocluster.2eepsbr.mongodb.net/?retryWrites=true&w=majority&appName=todoCluster`
+      `mongodb+srv://tododbuser:${process.env.DB_PASSWORD}@todocluster.jc7qbsz.mongodb.net/?retryWrites=true&w=majority&appName=todoCluster`,
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        writeConcern: {
+          w: "majority",
+          wtimeout: 5000
+        }
+      }
     );
     console.log("yo baby, connected to the database");
   } catch (err) {
